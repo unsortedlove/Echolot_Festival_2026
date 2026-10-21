@@ -63,39 +63,3 @@ SynthDef(\fm,{ arg amp=0.8,freq=20,splay=0.4, index2, index3, index4, index5, in
 )
 
 ////////////////////// \pattern installation
-(
-~pat = Pdef(\a,
-    Pbind(
-        \instrument, \fm,
-        \dur, Pseq([10, 10, 15, 10, 20], inf),
-        \freq, Pseq([
-            [30, 34, 37, 42],
-            [32, 35, 39, 44],
-            [30, 34, 37, 41],
-            [29, 33, 36, 41],
-            [30, 34, 37, 42]
-        ], inf).collect({ |chord| chord.collect(_ + Prand([0, 2, 5], 1)).midicps }),
-        \amp, 0.3,
-        \splay, Pwhite(0.4, 0.9, inf),
-        \ratio1, Prand([1, 2, 3, 5], inf),
-        \ratio2, Prand([1, 2, 3, 5], inf),
-        \ratio3, Prand([1, 2, 3, 5], inf),
-        \ratio4, Prand([1, 2, 3, 5], inf),
-        \ratio5, Prand([1, 2, 3, 5], inf),
-        \ratio6, Prand([1, 2, 3, 5], inf),
-        \index2, Prand([1, 3, 5], inf),
-        \index3, Prand([1, 3, 5], inf),
-        \index4, Prand([1, 3, 5], inf),
-        \index5, Prand([1, 3, 5], inf),
-        \index6, Pwhite(2, 10, inf),
-        \env1att, 5.004,
-        \env1rel, 20,
-        \env2att, 10.007,
-        \env2rel, 10.007,
-        \env3att, 8,
-        \env3rel, 20
-    )
-).play;
-)
-
-~pat.stop;
