@@ -1,4 +1,6 @@
 (
+s.options.numOutputBusChannels_(4);
+
 s.waitForBoot {
 	SynthDef(\unsortedEchoesFM, {
 		arg out=0, freq=110, amp=0.035, gate=1, pan=0,
@@ -22,10 +24,10 @@ s.waitForBoot {
 		signal = LeakDC.ar((carrier * 0.72) + undertone) * env * amp;
 		signal = (signal * 1.5).tanh;
 
-		direct = Pan2.ar(signal, pan.clip(-1, 1));
+		direct = PanAz.ar(4, signal, pan.clip(-1, 1));
 		reflectionDelay = (echoTime.clip(0.05, 0.8) * LFNoise1.kr(0.07).range(0.9, 1.1)).clip(0.05, 0.9);
 		reflectionPan = (pan.neg + LFNoise1.kr(0.04).range(-0.18, 0.18)).clip(-1, 1);
-		reflection = Pan2.ar(
+		reflection = PanAz.ar(4,
 			LPF.ar(DelayC.ar(signal, 1, reflectionDelay), (freq * 8).clip(500, 6000)),
 			reflectionPan
 		) * echoMix.clip(0, 0.7);
