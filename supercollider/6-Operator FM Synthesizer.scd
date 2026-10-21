@@ -99,33 +99,3 @@ SynthDef(\fm,{ arg amp=0.8,freq=20,splay=0.4, index2, index3, index4, index5, in
 )
 
 ~pat.stop;
-
-
-(
-Pdef(\chords,
-    Pbind(
-        \instrument, \fm,
-        \scale, Scale.major,
-        \root, 6,
-        \degree, Prand([
-            [0, 2, 4],
-            [3, 5, 0],
-            [4, 6, 1],
-            [5, 0, 2]
-        ], inf),
-        \octave, 3,
-        \dur, Pwhite(4.0, 12.0, inf),
-        \amp, 0.10,
-        \splay, 0.8,
-        \index2, Pwhite(0.5, 3.0, inf),
-        \index3, Pwhite(0.2, 1.5, inf),
-        \index4, 0.5,
-        \index5, 0.4,
-        \index6, 2,
-        \env1rel, 5,
-        \env3rel, 6
-    )
-).play;
-)
-
-
